@@ -43,21 +43,19 @@
 .nav-link {
   color: lightgray !important;
 }
-.navbar-nav {
-  color: lightgray !important;
-}
-.navbar-light {
-  color: lightgray !important;
-}
 
 .nav-link:hover {
   color: white !important;
+  background: #9900FF;
 }
-.navbar-nav:hover {
+
+.nav-link.active{
+  background-color: #9900FF !important;
   color: white !important;
 }
-.navbar-light:hover {
-  color: white !important;
+
+.NavTab {
+  background: #6c757d;
 }
 
 .main-bg {

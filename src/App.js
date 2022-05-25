@@ -1,16 +1,18 @@
 import './App.css';
-import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
+import { Navbar, Container, Nav, Row, Col, Button } from 'react-bootstrap';
 import bg from './img/bg.png';
 import { useState } from 'react';
 import data from './data.js';
 import Detail from './pages/Detail.js';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function App() {
 
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
+  let [탭 , 탭변경]= useState(0);
 
   return (
     <div className="App">
@@ -57,7 +59,7 @@ function App() {
         </Route>
         <Route path="*" element={<div>없는페이지요</div>} />
       </Routes>
-      <button onClick={()=>{
+      <Button variant="secondary" onClick={()=>{
         // axios로 요청하는거 해볼래
         axios.get('https://codingapple1.github.io/shop/data2.json')
         .then((결과)=>{
@@ -80,11 +82,50 @@ function App() {
         // axios.post('/safdfas',{name: 'kim'})
         // ajax를 여러군대로 보내고싶어요.
         //Promise.all([axios.get('/url1'), axios.get('url2')]).then(()=>{}) then은 생략가능
-
-
-      }}>더보기</button>
+      }}>더보기</Button>
+      <div style={{margin:"20px"}}></div>
+      <Nav variant="pills" defaultActiveKey="1" className='NavTab'>
+      <Nav.Item>
+        <Nav.Link eventKey="1" title="Item" onClick={()=>{
+          탭변경(0)
+        }}>
+          NavLink 1 content
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="2" title="Item" onClick={()=>{
+          탭변경(1)
+        }}>
+          NavLink 2 content
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="3" title="Item" onClick={()=>{
+          탭변경(2)
+        }}>
+          NavLink 3 content
+        </Nav.Link>
+      </Nav.Item>
+      </Nav>
+      <TabContent 탭={탭}></TabContent>
+      {/* 
+      1. html/css로 미리 디자인
+      2. ui의 상태를 저장해 둘 state 만들기
+      3. component로 만들어서 적용 
+      */}
     </div>
   );
+}
+function TabContent({탭, props2}){
+  // if(탭 == 0){
+  //   return(<div>여기1</div>)
+  // }else if(탭 == 1){
+  //   return(<div>여기2</div>)
+  // }else if(탭 == 2){
+  //   return(<div>여기3</div>)
+  // }
+  // 그런데 만약 if문이 길어지는게 싫다면 아래 방법도있음.
+  return([<div>여기1</div>,<div>여기2</div>,<div>여기3</div>][탭])
 }
 
 function About(){
