@@ -9,7 +9,7 @@ import axios from 'axios';
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -62,11 +62,27 @@ function App() {
         axios.get('https://codingapple1.github.io/shop/data2.json')
         .then((결과)=>{
           console.log(결과.data);
+          // 가져온 데이터를 추가해주세요.
+          let copy = [...shoes, ...결과.data];
+          console.log(결과.data);
+          setShoes(copy);
         })
         .catch(()=>{
           console.log('axios 실패')
         })
-      }}>버튼</button>
+        // ajax통신방법중 fetch라는 방법도있지만.... JSON-> array/object로 변환해주는 과정필요해서 그냥 axios 씁니다.
+        // fetch('https://codingapple1.github.io/shop/data2.json')
+        // .then(결과 => 결과.json())
+        // .then(data=>{})
+
+
+        // 데이터 실어 서버로 보내기
+        // axios.post('/safdfas',{name: 'kim'})
+        // ajax를 여러군대로 보내고싶어요.
+        //Promise.all([axios.get('/url1'), axios.get('url2')]).then(()=>{}) then은 생략가능
+
+
+      }}>더보기</button>
     </div>
   );
 }
