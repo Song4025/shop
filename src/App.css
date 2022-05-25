@@ -46,7 +46,6 @@
 
 .nav-link:hover {
   color: white !important;
-  background: #9900FF;
 }
 
 .nav-link.active{
@@ -56,6 +55,14 @@
 
 .NavTab {
   background: #6c757d;
+}
+
+.start{
+  opacity: 0;
+}
+.end {
+  opacity: 1;
+  transition: 1s;
 }
 
 .main-bg {
