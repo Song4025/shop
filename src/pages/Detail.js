@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import styled from "styled-components";
 import { Context1 } from './../App.js'
+import { addProduct } from './../store.js'
+import { useDispatch } from "react-redux";
 
 // class Detail2 extends React.Component{
 //   componentDidMount(){
@@ -44,6 +46,18 @@ function Detail(props){
   });
   let [탭 , 탭변경]= useState(0);
   let [alert, setAlert] = useState(true)
+  let dispatch = useDispatch()
+  
+  useEffect(()=>{
+    let 꺼낸거 = localStorage.getItem('watched')
+
+    꺼낸거 = JSON.parse(꺼낸거)
+    꺼낸거.push(찾은상품.id)
+    꺼낸거 = new Set(꺼낸거)
+    꺼낸거 = Array.from(꺼낸거)
+    localStorage.setItem('watched', JSON.stringify(꺼낸거))
+  },[])
+
 
   // 보관함 해체 함수
   let {재고} = useContext(Context1)
@@ -105,7 +119,9 @@ function Detail(props){
           <h4 className="pt-5">{찾은상품.title}</h4>
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}</p>
-          <button className="btn btn-danger">주문하기</button> 
+          <button className="btn btn-danger" onClick={()=>{
+            dispatch(addProduct({id : 1, name : 'Red Knit', count : 1}))
+          }}>주문하기</button> 
         </div>
       </div>
     </div> 

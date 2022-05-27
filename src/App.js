@@ -1,7 +1,7 @@
 import './App.css';
 import { Navbar, Container, Nav, Row, Col, Button } from 'react-bootstrap';
 import bg from './img/bg.png';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import data from './data.js';
 import Detail from './pages/Detail.js';
 import {Routes, Route, useNavigate, Outlet} from 'react-router-dom';
@@ -12,6 +12,26 @@ import Cart from './routes/Cart.js'
 export let Context1 = createContext()
 
 function App() {
+
+  //컴퓨터한테 명령하는 방법
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify([]))
+    // 로컬스토리지에 watched 가 이미 있으면 []이거 실행하지 말아주세요.
+  },[])
+
+  // 1. 누가 detail페이지로 접속하면
+  // 2. 상품id를 가져와서
+  // 3. localStorage에 보관하고 ..등등
+
+  // let obj = {name : 'kim'}
+  // JSON.stringify(obj)
+  // console.log(obj)
+  // localStorage.setItem('data', JSON.stringify(obj))
+  // // json으로 변환했기때문에 꺼내도 json형태로 되어있음
+  // let 꺼낸거 = localStorage.getItem('data')
+  // console.log(꺼낸거)
+  // JSON.parse(꺼낸거)
+  // console.log(JSON.parse(꺼낸거))
 
   let [shoes, setShoes] = useState(data)
   let navigate = useNavigate();
