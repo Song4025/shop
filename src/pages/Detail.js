@@ -38,7 +38,6 @@ function Detail(props){
     }
   },[])
 
-  let [count, setCount] = useState(0);
   let {id} = useParams();
   let picture = parseInt(id) + 1;
   let 찾은상품 = props.shoes.find(function(p){
@@ -105,12 +104,12 @@ function Detail(props){
         <div className="alert alert-warning">2초 이내에 구매시 할인</div> 
         : null
       } 
-    <div className={'container start ' + fade2} >
+    <div className={'container start ' + fade2}  style={{marginTop: "20px", marginBottom: "20px"}}>
       {/* <Box bg="blue">여기에 글씨가있으면?</Box>
       <NewBox bg="blue">여기에 글씨가있으면?</NewBox> */}
-      <button onClick={()=>{
+      {/* <button onClick={()=>{
         setCount(count + 1)
-      }}>리렌더링</button>
+      }}>리렌더링</button> */}
       <div className="row">
         <div className="col-md-6">
           <img src={"https://codingapple1.github.io/shop/shoes" + picture + ".jpg"} width="100%" />
@@ -175,7 +174,7 @@ function Detail(props){
     // }
     // 그런데 만약 if문이 길어지는게 싫다면 아래 방법도있음.
     let [fade, setFade] = useState('')
-    let {재고} = useContext(Context1)
+    // let {재고} = useContext(Context1)
   
     useEffect(()=>{
       let a = setTimeout(()=>{
@@ -190,9 +189,9 @@ function Detail(props){
     return(
       <div className={'start '+ fade}>
       {[
-        <div>{재고}</div>,
-        <div>여기2</div>,
-        <div>여기3</div>
+        <div>상품정보</div>,
+        <div>후기</div>,
+        <div>Q&A</div>
       ][탭]}
     </div>
     )
