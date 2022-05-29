@@ -40,7 +40,7 @@ function App() {
   let [shoes, setShoes] = useState(data)
   let navigate = useNavigate();
   let [재고]= useState([10, 11, 12])
-  const name = '리액트';
+  let [more, setMore] = useState(2)
 
   let result = useQuery('작명', ()=>{
     return axios.get('https://codingapple1.github.io/userdata.json')
@@ -90,16 +90,20 @@ function App() {
             ))
           }
         </Row>
-        <div>{name === '리액트' ? <h1>리액트입니다.</h1> : <h1>리액트가 아닙니다</h1>}</div>
+
+          { more == 2 || more == 3 ?
+        
         <Button variant="secondary" onClick={()=>{
+        setMore(more + 1);
+        console.log(more)
         // axios로 요청하는거 해볼래
-        axios.get('https://codingapple1.github.io/shop/data2.json')
+        axios.get('https://codingapple1.github.io/shop/data'+(more)+'.json')
         .then((결과)=>{
           console.log(결과.data);
           // 가져온 데이터를 추가해주세요.
           let copy = [...shoes, ...결과.data];
-          console.log(결과.data);
           setShoes(copy);
+          console.log(copy)
         })
         .catch(()=>{
           console.log('axios 실패')
@@ -115,6 +119,9 @@ function App() {
         // ajax를 여러군대로 보내고싶어요.
         //Promise.all([axios.get('/url1'), axios.get('url2')]).then(()=>{}) then은 생략가능
       }}>더보기</Button>
+       : null
+      }
+
         {
           console.log(axios.getdata)
         }
