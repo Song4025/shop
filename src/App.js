@@ -1,7 +1,7 @@
 import './App.css';
 import { Navbar, Container, Nav, Row, Col, Button } from 'react-bootstrap';
 import bg from './img/bg.png';
-import { lazy,Suspense, createContext, useState, useEffect } from 'react';
+import { lazy,Suspense, useState, useEffect } from 'react';
 import data from './data.js';
 // import Detail from './pages/Detail.js';
 // import Cart from './routes/Cart.js'

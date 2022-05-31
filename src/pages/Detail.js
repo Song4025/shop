@@ -1,19 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-import styled from "styled-components";
-import { Context1 } from './../App.js'
 import { addProduct } from './../store.js'
 import { useDispatch } from "react-redux";
-
-let Box = styled.div`
-  background: ${props => props.bg};
-  color: ${props => props.bg == 'blue'? 'white' : 'black'};
-  padding: 20px;
-`
-let NewBox = styled.div`
-  border: solid 1px red;
-`;
 
 function Detail(props){
   
@@ -102,7 +91,6 @@ function Detail(props){
 }
 
   function TabContent({탭}){
-
     let [fade, setFade] = useState('')
 
     useEffect(()=>{
