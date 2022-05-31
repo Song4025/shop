@@ -9,20 +9,22 @@ let cart = createSlice({
   ],
   reducers:{
     addCount(state, action){
-      // state[action.payload].count++
       let 번호 = state.findIndex((a)=>{return a.id === action.payload})
       state[번호].count++
+    },
+    removeCount(state, action){
+      let 번호 = state.findIndex((a)=>{return a.id === action.payload})
+      state[번호].count--
+      console.log(state[번호].count)
+      if(state[번호].count <= -1){return state[번호].count === 0} 
     },
     addProduct(state, action){
       state.push(action.payload)
     }
   }
 })
-// [
-//   {id : 0, name : 'White and Black', count : 2},
-//   {id : 2, name : 'Grey Yordan', count : 1}
-// ] 
-export let {addCount, addProduct} = cart.actions 
+
+export let {addCount, removeCount, addProduct} = cart.actions 
 
 export default configureStore({
   reducer: { 

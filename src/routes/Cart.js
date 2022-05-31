@@ -1,7 +1,7 @@
 import {Table} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import {changeName, increase} from "./../store/UserSlice.js"
-import {addCount} from "./../store.js"
+import {addCount, removeCount} from "./../store.js"
 import { useState, memo, useMemo } from 'react';
 
 // 메모는 props가변할때만 재렌더링 해줌. 불필요한 재렌더링을 막을 수 있어요 그러나..
@@ -27,14 +27,6 @@ let result = useMemo(()=>{return 함수()}, [state])
 
     return(
         <div>
-            <Child count={count}></Child>
-            <button onClick={()=>{
-                setCount(count+1)
-            }}>+</button>
-            {state.test.age}장바구니
-            <button onClick={()=>{
-                dispatch(increase(1))
-            }}>버튼</button>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -57,6 +49,10 @@ let result = useMemo(()=>{return 함수()}, [state])
                                             dispatch(addCount(state.cart[i].id))
                                             console.log(state.cart[i].id)
                                         }}>+</button>
+                                        <button onClick={()=>{
+                                            dispatch(removeCount(state.cart[i].id))
+                                            console.log(state.cart[i].id)
+                                        }}>-</button>
                                     </td>
                                 </tr>
                             )
